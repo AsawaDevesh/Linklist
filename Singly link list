@@ -1,1 +1,144 @@
-Readme
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node *next;
+};
+
+void fin();
+void ein();
+void display();
+void rin();
+struct node *root=NULL;
+
+void main()
+{
+int x;
+while(1)
+{
+printf("Enter 1.Insert at start \n\t 2.Insert at end \n\t 3. Random Insert \n\t 4.Delete at start \n\t 5.Delete at end \n\t 6.Delete random \n\t 7. Display Linked List \n\t 8.Quit : ");
+scanf("%d",&x);
+switch (x)
+{
+case 1:
+fin();
+continue;
+case 2:
+ein();
+continue;
+case 3:
+rin();
+continue;
+//case 4:
+//case 5:
+//case 6:
+case 7:
+display();
+continue;
+case 8:
+exit(0);
+default :
+printf("Invalid entry.Try again");
+
+}
+
+}
+}
+
+void fin()
+{
+struct node *p=(struct node *)malloc(sizeof(struct node));
+int x;
+if(p==NULL)
+{
+printf("Overflow");
+}
+else
+{
+printf("Enter Number : ");
+scanf("%d",&x); 
+p->data=x;
+p->next=root;
+root=p;
+printf("Node Inserted at start \n");
+}
+}
+
+void display()
+{
+struct node *p=root;
+if(p==NULL)
+{
+printf("Empty List \n");
+}
+else
+{
+while(p!=NULL)
+{
+printf("%d ",p->data);
+p=p->next;
+}
+printf("\n");
+}
+}
+
+void ein()
+{
+struct node *p=(struct node *)malloc(sizeof(struct node));
+struct node *temp;
+int x;
+if(p==NULL)
+{
+printf("Overflow \n");
+}
+else
+{
+printf("Enter number : ");
+scanf("%d",&x);
+p->data=x;
+if(root==NULL)
+{
+root=p;
+p->next=NULL;
+printf("Node inserted at end \n");
+}
+else
+{
+temp=root;
+while(temp->next!=NULL)
+{
+temp=temp->next;
+}
+temp->next=p;
+p->next=NULL;
+printf("Node inserted at end \n");
+}
+}
+}
+
+void rin()
+{
+struct node *p=(struct node *)malloc(sizeof(struct node));
+struct node *temp,*t;
+int x;
+if(p==NULL)
+{
+printf("Overflow \n");
+}
+else
+{
+printf("Enter number : ");
+scanf("%d",&x);
+p->data=x;
+temp=root;
+while(p->data>temp->data)
+{
+t=temp;
+temp=temp->next;
+}
+p->next=temp;
+t->next=p;
+printf("Node Inserted \n");
+}
+}
